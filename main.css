@@ -3,6 +3,7 @@
 body {
     background-color: #1b1b1b;
     font-family: 'Montserrat', sans-serif;
+    margin: 0; /* Added to remove default body margin */
 }
 
 nav {
@@ -18,7 +19,7 @@ nav {
     justify-content: left;
     padding: 0 1%;
     z-index: 5;
-    margin: auto;
+    box-sizing: border-box; /* Added for better padding behavior */
 }
 
 nav img {
@@ -35,6 +36,7 @@ nav h1 {
     font-size: 4vw;
     font-weight: 800;
     margin-right: 1%;
+    margin: 0; /* Added to align better */
 }
 
 .content {
@@ -57,7 +59,7 @@ nav h1 {
     margin-top: 2.5vw;
     margin-left: 1.2vw;
 }
- 
+
 .search input {
     background-color: #222222;
     border: none;
@@ -70,18 +72,18 @@ nav h1 {
     z-index: 1;
     outline: none;
 }
- 
+
 .search input::placeholder {
     color: #fff;
     font-weight: 600;
     font-size: 1.5vw;
 }
- 
+
 .search button {
     background-color: #fff;
     border: none;
     border-radius: 0 1vw 1vw 0;
-    color:#222222;
+    color: #222222;
     font-size: 1.5vw;
     font-weight: 600;
     padding: 0.8vw 1vw;
@@ -90,17 +92,17 @@ nav h1 {
     z-index: 1;
     transition: .3s all ease;
 }
- 
+
 #games {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: .6vw;
     padding-bottom: 5vw;
-
 }
- 
-#games img {    height: 15.6vw;
+
+#games img {
+    height: 15.6vw;
     width: 15.6vw;
     border-radius: 1vw;
     margin: .5vw;
@@ -108,10 +110,25 @@ nav h1 {
     user-select: none;
     transition: transform .2s;
 }
- 
+
 #games img:hover {
     transform: scale(1.01);
 }
+
+/* Make game links display correctly in flex container */
+#games a {
+    display: block; /* Ensures hidden games don't take up space */
+    transition: transform .2s; /* Moves transition to the link */
+}
+
+#games a:hover {
+    transform: scale(1.01); /* Moves hover effect to the link */
+}
+
+#games a img:hover {
+    transform: none; /* Disables the double-transform */
+}
+
 
 .featured {
     display: flex;
@@ -119,7 +136,7 @@ nav h1 {
     flex-wrap: wrap;
     justify-content: center;
     padding: 1vw;
-    margin:1%;
+    margin: 1%;
     margin-top: 6vw;
 }
 
@@ -152,7 +169,6 @@ nav h1 {
     filter: brightness(50%);
 }
 
-
 .featured .row img {
     height: 26vw;
     width: 26vw;
@@ -163,23 +179,25 @@ nav h1 {
     position: relative;
     color: #2c7ffc;
     text-decoration: none;
+    /* Added to fix image margin collapse */
+    font-size: 0; 
 }
-    
-    .featured .play-button {
+
+.featured .play-button {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
     transition: opacity 0.2s;
-    }
-    
-    .featured a:hover .play-button {
+}
+
+.featured a:hover .play-button {
     opacity: 1;
     pointer-events: none;
-    }
-    
-    .featured .play-button i {
+}
+
+.featured .play-button i {
     font-size: 5vw;
     text-shadow: 0 0 100px #2c7ffc;
-    }
+}
